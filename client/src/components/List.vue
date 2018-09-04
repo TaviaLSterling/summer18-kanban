@@ -1,5 +1,5 @@
 <template>
-  a list
+
 </template>
 
 <script>
