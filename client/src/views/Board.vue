@@ -1,7 +1,7 @@
 <template>
   <div class="board">
-    {{boardId}}
-    <router-link :to="{name: 'board', params: {boardId: board._id}}">{{board.title}}</router-link>
+    {{boardId}} {{activeBoard.title}}
+
   </div>
 </template>
 
@@ -15,6 +15,10 @@
       }
     },
     props: ["boardId"],
+    mounted() {
+      this.$store.dispatch("getBoard", boardId);
+      //where is boardId coming from? this.?
+    },
     computed: {
       activeBoard() {
         return this.$store.state.activeBoard;
