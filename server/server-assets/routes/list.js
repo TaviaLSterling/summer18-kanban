@@ -3,10 +3,11 @@ let Boards = require('../models/board')
 let Lists = require('../models/list')
 
 //GET
-router.get('/', (req, res, next) => {
-  Boards.find({ authorId: req.session.uid })
-    .then(data => {
-      res.send(data)
+
+router.get('board/:boardId/lists', (req, res, next) => {
+  Lists.find({ boardId: req.params.boardId })
+    .then(list => {
+      res.send(list)
     })
     .catch(err => {
       console.log(err)
@@ -25,6 +26,13 @@ router.post('/', (req, res, next) => {
       console.log(err)
       next()
     })
+})
+
+router.post('boards/:boardId/lists', (req, res, next) => {
+  Lists.find({ boardId: req.params.boardId })
+    .then(list => {
+      res.send(list)
+    }).catch(next)
 })
 
 //PUT
@@ -62,21 +70,10 @@ router.delete('/:id', (req, res, next) => {
         })
     })
 })
-///////////////////////////////////////////////////////////  list routes
-router.get('/:boardId/lists', (req, res, next) => {
-  Lists.find({ boardId: req.params.boardId })
-    .then(list => {
-      res.send(list)
-    }).catch(next)
-})
 
-router.post('/:boardId/lists', (req, res, next) => {
-  req.body.boardId = req.params.boardId
-  Lists.create(req.body)
-    .then(list => {
-      res.send(list)
-    }).catch(next)
-})
+
+
+
 
 
 module.exports = router

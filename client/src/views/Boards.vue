@@ -46,6 +46,9 @@
       },
       deleteBoard(boardId) {
         this.$store.dispatch("deleteBoard", boardId);
+      },
+      setActiveBoard(id) {
+        this.$store.dispatch('setActiveBoard', id)
       }
     }
   };

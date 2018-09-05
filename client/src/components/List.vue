@@ -1,5 +1,8 @@
 <template>
-  a test
+  <h1>
+    {{listData}}
+  </h1>
+
 </template>
 
 <script>
@@ -11,9 +14,6 @@
         this.$router.push({ name: "login" });
       }
     },
-    mounted() {
-      this.$store.dispatch("getLists");
-    },
     data() {
       return {
         newList: {
@@ -22,19 +22,20 @@
         }
       };
     },
-    computed: {
-      lists() {
-        return this.$store.state.lists;
-      }
-    },
+    props: ["listData"],
+
     methods: {
+      // addList() {
+      //   this.$store.dispatch("addList", this.newList);
+      //   this.newList = { title: "", description: "" };
       addList() {
+        this.newList.boardId = this.activeBoard._id
+        console.log(this.newList)
         this.$store.dispatch("addList", this.newList);
-        this.newList = { title: "", description: "" };
       },
-      deleteList(listId) {
-        this.$store.dispatch("deleteList", listId);
-      }
+      // deleteList(listId) {
+      //   this.$store.dispatch("deleteList", listId);
+      // }
     }
   };
 </script>

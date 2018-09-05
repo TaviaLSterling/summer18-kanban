@@ -22,11 +22,12 @@ export default new Vuex.Store({
     user: {},
     boards: [],
     activeBoard: {},
-    lists: {
-      // "i2ln23jrn2k3j4hl2j3h4" : {
-      //   tasks: []
-      // }
-    },
+    lists: [],
+    //  {
+    //   // "i2ln23jrn2k3j4hl2j3h4" : {
+    //   //   tasks: []
+    //   // }
+    // },
     list: {}
   },
   mutations: {
@@ -36,8 +37,16 @@ export default new Vuex.Store({
     setBoards(state, boards) {
       state.boards = boards
     },
-    setActiveBoard(state, activeBoard) {
-      state.activeBoard = activeBoard
+    setActiveBoard(state, boardId) {
+      state.activeBoard = state.boards.find(b => b._id == boardId)
+    },
+    setLists(state, lists) {
+      // let listObj = {}
+      // lists.forEach(list => {
+      //   listObj[list._id] = list
+      // });
+      // state.lists = listObj
+      state.lists = lists
     }
   },
   actions: {
@@ -83,30 +92,28 @@ export default new Vuex.Store({
           dispatch('getBoards')
         })
     },
-    //where is boardId coming from
-    getBoard({ commit, dispatch }, boardId) {
-      api.get('boards/' + boardId)
-        .then(res => {
-          commit('setActiveBoard', res.data)
-        }
-        )
+    setActiveBoard({ commit, dispatch }, bId) {
+      console.log('here', bId)
+      let obj = { boardId: bId }
+      commit('setActiveBoard', bId)
+      dispatch('getLists', obj)
     },
 
     //LISTs
-    getLists({ commit, dispatch }) {
-      api.get('lists')
+    getLists({ commit, dispatch }, newList) {
+      api.get('boards/' + newList.boardId + '/lists')
         .then(res => {
           commit('setLists', res.data)
         })
     },
-    addList({ commit, dispatch }, listData) {
-      api.post('lists', listData)
+    addList({ commit, dispatch }, newList) {
+      api.post('boards/' + newList.boardId + '/lists', newList)
         .then(serverList => {
-          dispatch('getLists')
+          dispatch('getLists', serverList.data)
         })
     },
-    deleteList({ commit, dispatch }, listId) {
-      api.delete('lists/' + listId)
+    deleteList({ commit, dispatch }, boardId) {
+      api.delete('/' + boardId + '/lists')
         .then(res => {
           dispatch('getLists')
         })
