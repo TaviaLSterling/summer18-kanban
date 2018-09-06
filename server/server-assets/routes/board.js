@@ -1,6 +1,7 @@
 let router = require('express').Router()
 let Boards = require('../models/board')
 let Lists = require('../models/list')
+let Tasks = require('../models/task')
 
 //GET
 router.get('/', (req, res, next) => {
@@ -81,8 +82,6 @@ router.post('/:boardId/lists', (req, res, next) => {
     })
 })
 
-
-//DELETE
 router.delete('/:boardId/lists/:id', (req, res, next) => {
   Lists.findById(req.params.id)
     .then(list => {
@@ -101,4 +100,45 @@ router.delete('/:boardId/lists/:id', (req, res, next) => {
       res.status(400).send(err)
     })
 })
+
+/////////////////////////////////////// TASK ROUTES
+
+router.get('/:boardId/lists/:listId/tasks', (req, res, next) => {
+  Tasks.find({ listId: req.params.listId })
+    .then(task => {
+      res.send(task)
+    }).catch(next)
+})
+
+router.post('/:boardId/lists/:listId/tasks', (req, res, next) => {
+  req.body.listId = req.params.listId
+  req.body.boardId = req.params.boardId
+  req.body.authorId = req.session.uid
+  Tasks.create(req.body)
+    .then(task => {
+      res.send(task)
+    }).catch(err => {
+      res.status(400).send(err)
+    })
+})
+
+router.delete('/:boardId/lists/:listId/tasks/:id', (req, res, next) => {
+  Tasks.findById(req.params.id)
+    .then(list => {
+      if (!list.authorId == req.session.uid) {
+        return res.status(401).send("ACCESS DENIED!")
+      }
+      Tasks.findByIdAndRemove(req.params.id)
+        .then(data => {
+          res.send('DELORTED')
+        })
+        .catch(err => {
+          res.status(400).send(err)
+        })
+    })
+    .catch(err => {
+      res.status(400).send(err)
+    })
+})
+
 module.exports = router

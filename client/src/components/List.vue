@@ -8,7 +8,7 @@
 
           </div>
           <div class="card-action">
-            <form @submit.prevent="addList">
+            <form @submit.prevent="addTask">
               <input type="text" placeholder="title" v-model="newList.title" required>
               <input type="text" placeholder="description" v-model="newList.description">
               <button type="submit">Create Task</button>
