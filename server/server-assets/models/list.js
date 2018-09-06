@@ -6,10 +6,9 @@ let schemaName = 'List'
 
 let schema = new Schema({
   title: { type: String, required: true },
- 
-  created: { type: Number, default: Date.now() },
-  authorId: { type: ObjectId, ref: 'User' },
-  boardId: { type: ObjectId, ref: 'Board' }
+  authorId: { type: ObjectId, ref: 'User', required: true },
+  boardId: { type: ObjectId, ref: 'Board', required: true },
+  created: { type: Number, required: true, default: Date.now() }
 })
 
 

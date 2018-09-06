@@ -7,7 +7,7 @@
     </div>
     <form @submit.prevent="addList">
       <input type="text" placeholder="title" v-model="newList.title" required>
-     
+
       <button type="submit">Create List</button>
     </form>
     <List v-for="list in lists" :listData="list" />
@@ -23,8 +23,8 @@
       return {
         newList: {
           title: "",
-          
           boardId: ""
+
         }
       };
     },
@@ -41,7 +41,7 @@
     },
     computed: {
       activeBoard() {
-        return this.$store.state.activeBoard
+        return this.$store.state.activeBoard || {}
       },
       lists() {
         return this.$store.state.lists;

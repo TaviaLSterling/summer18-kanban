@@ -21,8 +21,9 @@ export default new Router({
       component: Board
     },
     {
-      path: '/:boardId/list',
+      path: '/:boardId/lists',
       name: 'list',
+      props: true,
       component: List
     },
     {
