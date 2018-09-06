@@ -28,7 +28,8 @@ export default new Vuex.Store({
     //   //   tasks: []
     //   // }
     // },
-    list: {}
+    list: {},
+    tasks: {}
   },
   mutations: {
     setUser(state, user) {
@@ -47,6 +48,13 @@ export default new Vuex.Store({
       // });
       // state.lists = listObj
       state.lists = lists
+    },
+    setTasks(state, tasks) {
+      let taskObj = {}
+      tasks.foreach(task => {
+        taskObj[task._id] = taskObj
+      })
+      state.tasks = tasks
     }
   },
   actions: {
@@ -112,14 +120,32 @@ export default new Vuex.Store({
           dispatch('getLists', serverList.data)
         })
     },
-    deleteList({ commit, dispatch }, listData, _id) {
-      debugger
-      api.delete('boards/' + listData.boardId + "/lists/" + _id)
+    deleteList({ commit, dispatch }, listData) {
+      api.delete('boards/' + listData.boardId + "/lists/" + listData._id)
         .then(res => {
-          dispatch('getLists')
+          dispatch('getLists', listData)
         })
     },
 
+    //TASKS
+    getTasks({ commit, dispatch }, newTask) {
+      api.get('boards/' + newTask.boardId + '/lists' + newTask.listId + '/tasks')
+        .then(res => {
+          commit('setTasks', res.data)
+        })
+    },
+    addTask({ commit, dispatch }, newTask) {
+      api.post('boards/' + newTask.boardId + '/lists', newTask.listId + '/tasks')
+        .then(serverTask => {
+          dispatch('getTasks', serverTask.data)
+        })
 
+    },
+    deleteTask({ commit, dispatch }, taskData) {
+      api.delete('boards/' + taskData.boardId + "/lists/" + taskData.listId + "/tasks/" + taskData.taskId)
+        .then(res => {
+          dispatch('getTasks', taskData)
+        })
+    },
   }
 })

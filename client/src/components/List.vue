@@ -8,9 +8,9 @@
 
           </div>
           <div class="card-action">
-            <form @submit.prevent="addTask">
-              <input type="text" placeholder="title" v-model="newList.title" required>
-              <input type="text" placeholder="description" v-model="newList.description">
+            <form @submit.prevent="addTask(newTask)">
+              <input type="text" placeholder="title" v-model="newTask.title" required>
+              <input type="text" placeholder="description" v-model="newTask.description">
               <button type="submit">Create Task</button>
             </form>
             <button @click="deleteList(listData)">Delete List</button>
@@ -34,7 +34,7 @@
     },
     data() {
       return {
-        newList: {
+        newTask: {
           title: "",
           description: ""
         }
@@ -51,8 +51,12 @@
         console.log(this.newList)
         this.$store.dispatch("addList", this.newList);
       },
-      deleteList() {
-        this.$store.dispatch("deleteList", listData.boardId, listData._id);
+      deleteList(listData) {
+        this.$store.dispatch("deleteList", listData);
+      },
+      addTask(taskList) {
+        this.newTask.boardId = this.activeTask._id
+        this.$store.dispatch('addTask', taskList)
       }
     }
   };
