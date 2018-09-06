@@ -78,5 +78,17 @@ router.post('/:boardId/lists', (req, res, next) => {
     }).catch(next)
 })
 
-
+//DELETE
+router.delete('/:id', (req, res, next) => {
+  Lists.findById(req.params.id)
+    .then(list => {
+      if (!list.authorId.equals(req.session.uid)) {
+        return res.status(401).send("ACCESS DENIED!")
+      }
+      Lists.findByIdAndRemove(req.params.id)
+        .then(data => {
+          res.send('DELORTED')
+        })
+    })
+})
 module.exports = router

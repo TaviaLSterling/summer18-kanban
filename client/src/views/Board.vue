@@ -7,7 +7,7 @@
     </div>
     <form @submit.prevent="addList">
       <input type="text" placeholder="title" v-model="newList.title" required>
-      <input type="text" placeholder="description" v-model="newList.description">
+     
       <button type="submit">Create List</button>
     </form>
     <List v-for="list in lists" :listData="list" />
@@ -23,7 +23,7 @@
       return {
         newList: {
           title: "",
-          description: "",
+          
           boardId: ""
         }
       };
