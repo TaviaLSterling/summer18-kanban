@@ -50,7 +50,6 @@
     methods: {
       addList() {
         this.newList.boardId = this.activeBoard._id
-        console.log(this.newList)
         this.$store.dispatch("addList", this.newList);
         // this.newList = { title: "", description: "" };
       },

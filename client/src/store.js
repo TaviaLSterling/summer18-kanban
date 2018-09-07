@@ -51,7 +51,7 @@ export default new Vuex.Store({
     },
     setTasks(state, tasks) {
       let taskObj = {}
-      tasks.foreach(task => {
+      tasks.forEach(task => {
         if (!taskObj[task.listId]) {
           taskObj[task.listId] = []
           taskObj[task.listId].push(task)
@@ -60,6 +60,7 @@ export default new Vuex.Store({
           taskObj[task.listId].push(task)
         }
       })
+      console.log(tasks)
       state.tasks = tasks
     }
   },
@@ -107,7 +108,6 @@ export default new Vuex.Store({
         })
     },
     setActiveBoard({ commit, dispatch }, bId) {
-      console.log('here', bId)
       let obj = { boardId: bId }
       commit('setActiveBoard', bId)
       dispatch('getLists', obj)
@@ -135,20 +135,23 @@ export default new Vuex.Store({
 
     //TASKS
     getTasks({ commit, dispatch }, newTask) {
-      api.get('boards/' + newTask.boardId + '/lists' + newTask.listId + '/tasks')
+      api.get('boards/' + newTask.boardId + '/lists/' + newTask.listId + '/tasks')
         .then(res => {
           commit('setTasks', res.data)
         })
     },
     addTask({ commit, dispatch }, newTask) {
-      api.post('boards/' + newTask.boardId + '/lists', newTask.listId + '/tasks')
+      console.log(newTask)
+      api.post("boards/" + newTask.boardId + "/lists/" + newTask.listId + "/tasks", newTask)
         .then(serverTask => {
+          console.log(serverTask)
           dispatch('getTasks', serverTask.data)
         })
 
     },
     deleteTask({ commit, dispatch }, taskData) {
-      api.delete('boards/' + taskData.boardId + "/lists/" + taskData.listId + "/tasks/" + taskData.taskId)
+      debugger
+      api.delete('boards/' + taskData.boardId + '/lists/' + taskData._id + '/tasks/' + taskData.taskId)
         .then(res => {
           dispatch('getTasks', taskData)
         })

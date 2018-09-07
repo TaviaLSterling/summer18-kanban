@@ -4,7 +4,7 @@ let ObjectId = Schema.Types.ObjectId
 let schemaName = 'Task'
 
 let schema = new Schema({
-  title: { type: String, required: true },
+  title: { type: String, required: true },  ///works w/o title and description required but no title or description
   description: { type: String, required: true },
   authorId: { type: ObjectId, ref: 'User', required: true },
   boardId: { type: ObjectId, ref: 'Board', required: true },

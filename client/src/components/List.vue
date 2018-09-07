@@ -8,7 +8,7 @@
 
           </div>
           <div class="card-action">
-            <form @submit.prevent="addTask(newTask)">
+            <form @submit.prevent="addTask">
               <input type="text" placeholder="title" v-model="newTask.title" required>
               <input type="text" placeholder="description" v-model="newTask.description">
               <button type="submit">Create Task</button>
@@ -24,6 +24,7 @@
 </template>
 
 <script>
+  import Task from '../components/Task'
   export default {
     name: 'List',
     created() {
@@ -37,9 +38,11 @@
         newTask: {
           title: "",
           description: "",
-          boardId: "" //need this?
+          boardId: "",
+          listId: "",
+          authorId: ""
         }
-      };
+      }
     },
     props: ["listData"],
 
@@ -48,6 +51,7 @@
       //   this.$store.dispatch("addList", this.newList);
       //   this.newList = { title: "", description: "" };
       addList() {
+        debugger
         this.newList.boardId = this.activeBoard._id
         console.log(this.newList)
         this.$store.dispatch("addList", this.newList);
@@ -57,8 +61,14 @@
       },
       addTask(newTask) {
         this.newTask.boardId = this.listData.boardId
-        this.$store.dispatch('addTask', newTask)
+        this.newTask.listId = this.listData._id
+        this.newTask.authorId = this.listData.authorId
+        console.log(this.listData)
+        this.$store.dispatch('addTask', this.newTask)
       }
+    },
+    components: {
+      Task
     }
   };
 </script>
