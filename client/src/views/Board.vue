@@ -11,6 +11,7 @@
       <button type="submit">Create List</button>
     </form>
     <List v-for="list in lists" :listData="list" />
+    <!-- put this <Task v-for="task in tasks" :taskData="task" />  in <list/> ????? -->
   </div>
 </template>
 
