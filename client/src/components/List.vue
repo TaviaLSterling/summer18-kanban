@@ -8,13 +8,14 @@
 
           </div>
           <div class="card-action">
-            <form @submit.prevent="addTask">
+            <form @submit.prevent="addTask(newTask)">
               <input type="text" placeholder="title" v-model="newTask.title" required>
               <input type="text" placeholder="description" v-model="newTask.description">
               <button type="submit">Create Task</button>
             </form>
             <button @click="deleteList(listData)">Delete List</button>
           </div>
+          <Task v-for="task in tasks" :taskData="task" />
         </div>
       </div>
     </div>
@@ -45,6 +46,11 @@
       }
     },
     props: ["listData"],
+    computed: {
+      tasks() {
+        return this.$store.state.tasks;
+      }
+    },
 
     methods: {
       // addList() {
