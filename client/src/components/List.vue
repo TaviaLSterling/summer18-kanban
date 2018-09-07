@@ -36,7 +36,8 @@
       return {
         newTask: {
           title: "",
-          description: ""
+          description: "",
+          boardId: ""
         }
       };
     },
@@ -54,9 +55,9 @@
       deleteList(listData) {
         this.$store.dispatch("deleteList", listData);
       },
-      addTask(taskList) {
-        this.newTask.boardId = this.activeTask._id
-        this.$store.dispatch('addTask', taskList)
+      addTask(newTask) {
+        this.newTask.boardId = this.listData.boardId
+        this.$store.dispatch('addTask', newTask)
       }
     }
   };

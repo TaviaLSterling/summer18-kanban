@@ -52,7 +52,13 @@ export default new Vuex.Store({
     setTasks(state, tasks) {
       let taskObj = {}
       tasks.foreach(task => {
-        taskObj[task._id] = taskObj
+        if (!taskObj[task.listId]) {
+          taskObj[task.listId] = []
+          taskObj[task.listId].push(task)
+        }
+        else {
+          taskObj[task.listId].push(task)
+        }
       })
       state.tasks = tasks
     }
