@@ -4,6 +4,7 @@ import Boards from './views/Boards.vue'
 import Board from './views/Board.vue'
 import Login from './views/Login.vue'
 import List from './components/List.vue'
+import Task from './components/Task.vue'
 
 Vue.use(Router)
 
@@ -25,6 +26,12 @@ export default new Router({
       name: 'list',
       props: true,
       component: List
+    },
+    {
+      path: '/listId/tasks',
+      name: 'task',
+      props:true,
+      component: Task
     },
     {
       path: '/login',

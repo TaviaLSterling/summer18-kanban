@@ -5,6 +5,7 @@
 
       {{taskData.title}} {{taskData.description}}
     </h1>
+    <button @click="deleteTask(taskData)">Delete Task</button>
     <div class="dropdown">
       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
         aria-expanded="false">
@@ -16,16 +17,12 @@
         <a class="dropdown-item" href="#">Something else here</a>
       </div>
     </div>
-    <!-- <div class="card-action">
-      <form @submit.prevent="addTask">
-        <input type="text" placeholder="title" v-model="newTask.title" required>
-        <input type="text" placeholder="description" v-model="newTask.description">
-        <button type="submit">Create Task</button>
-      </form> -->
+    <!-- <Comment v-for="comment in comments" :commentData="comment" /> -->
   </div>
 </template>
 
 <script>
+   import Comment from '../components/Comment'
   export default {
     name: 'Task',
     created() {
@@ -53,9 +50,20 @@
       addTask() {
 
       },
-      deleteTask() {
-
-      }
+      deleteTask(taskData) {
+        this.$store.dispatch("deleteTask", taskData)
+      },
+      addComment(newComment) {
+              this.newComment.boardId = this.listData.boardId
+              this.newComment.listId = this.listData._id
+              this.newComment.authorId = this.listData.authorId
+              this.newComment.taskId = this.listData.taskId
+              console.log(this.listData)
+              this.$store.dispatch('addComment', this.newComment)
+            }
+    },
+    components: {
+      Comment
     }
 
   }

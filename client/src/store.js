@@ -23,13 +23,9 @@ export default new Vuex.Store({
     boards: [],
     activeBoard: {},
     lists: [],
-    //  {
-    //   // "i2ln23jrn2k3j4hl2j3h4" : {
-    //   //   tasks: []
-    //   // }
-    // },
     list: {},
-    tasks: {}
+    tasks: {},
+    comments:{}
   },
   mutations: {
     setUser(state, user) {
@@ -62,6 +58,20 @@ export default new Vuex.Store({
       })
       console.log(tasks)
       state.tasks = taskObj
+    },
+    setComments(state, comments) {
+      let commentObj = {}
+      comments.forEach(comment => {
+        if (!commentObj[comment.taskId]) {
+          commentObj[comment.taskId] = []
+          commentObj[comment.taskId].push(comment)
+        }
+        else {
+          commentObj[comment.taskId].push(comment)
+        }
+      })
+      console.log(comments)
+      state.comments = commentObj
     }
   },
   actions: {
@@ -150,10 +160,10 @@ export default new Vuex.Store({
 
     },
     deleteTask({ commit, dispatch }, taskData) {
-      debugger
-      api.delete('boards/' + taskData.boardId + '/lists/' + taskData._id + '/tasks/' + taskData.taskId)
+    
+      api.delete('boards/' + taskData.boardId + '/lists/' + taskData.listId + '/tasks/' + taskData._id)
         .then(res => {
-          dispatch('getTasks', taskData)
+          dispatch('getTasks', taskData.boardId)
         })
     },
   }
