@@ -61,7 +61,7 @@ export default new Vuex.Store({
         }
       })
       console.log(tasks)
-      state.tasks = tasks
+      state.tasks = taskObj
     }
   },
   actions: {
@@ -134,8 +134,8 @@ export default new Vuex.Store({
     },
 
     //TASKS
-    getTasks({ commit, dispatch }, newTask) {
-      api.get('boards/' + newTask.boardId + '/lists/' + newTask.listId + '/tasks')
+    getTasks({ commit, dispatch }, boardId) {
+      api.get('boards/' + boardId + '/lists/tasks')
         .then(res => {
           commit('setTasks', res.data)
         })
@@ -145,7 +145,7 @@ export default new Vuex.Store({
       api.post("boards/" + newTask.boardId + "/lists/" + newTask.listId + "/tasks", newTask)
         .then(serverTask => {
           console.log(serverTask)
-          dispatch('getTasks', serverTask.data)
+          dispatch('getTasks', serverTask.data.boardId)
         })
 
     },

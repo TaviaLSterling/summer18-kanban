@@ -15,7 +15,7 @@
             </form>
             <button @click="deleteList(listData)">Delete List</button>
           </div>
-          <Task v-for="task in tasks" :taskData="task" />
+          <Task v-for="task in tasks[listData._id]" :taskData="task" />
 
         </div>
       </div>
@@ -52,7 +52,9 @@
         return this.$store.state.tasks;
       }
     },
-
+    // mounted() {
+    //   this.$store.dispatch("getTasks");
+    // },
     methods: {
       // addList() {
       //   this.$store.dispatch("addList", this.newList);

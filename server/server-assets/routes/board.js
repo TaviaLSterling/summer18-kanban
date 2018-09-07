@@ -103,8 +103,8 @@ router.delete('/:boardId/lists/:id', (req, res, next) => {
 
 /////////////////////////////////////// TASK ROUTES
 
-router.get('/:boardId/lists/:listId/tasks', (req, res, next) => {
-  Tasks.find({ listId: req.params.listId })
+router.get('/:boardId/lists/tasks', (req, res, next) => {
+  Tasks.find({ boardId: req.params.boardId })
     .then(task => {
       res.send(task)
     }).catch(next)

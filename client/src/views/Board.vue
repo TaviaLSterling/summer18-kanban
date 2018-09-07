@@ -39,6 +39,7 @@
     props: ["boardId"],
     mounted() {
       this.$store.dispatch("setActiveBoard", this.boardId);
+      this.$store.dispatch("getTasks", this.boardId)
     },
     computed: {
       activeBoard() {

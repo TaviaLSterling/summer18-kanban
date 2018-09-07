@@ -44,8 +44,11 @@
     },
     props: ["taskData"],
     computed: {
-
+      tasks() {
+        return this.$store.state.tasks;
+      }
     },
+
     methods: {
       addTask() {
 
