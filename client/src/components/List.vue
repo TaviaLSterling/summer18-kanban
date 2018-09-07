@@ -37,11 +37,11 @@
         newTask: {
           title: "",
           description: "",
-          boardId: ""
+          boardId: "" //need this?
         }
       };
     },
-    props: ["listData"], //WHAT IS THIS???
+    props: ["listData"],
 
     methods: {
       // addList() {
