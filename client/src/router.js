@@ -21,18 +21,18 @@ export default new Router({
       props: true,
       component: Board
     },
-    {
-      path: '/:boardId/lists',
-      name: 'list',
-      props: true,
-      component: List
-    },
-    {
-      path: '/listId/tasks',
-      name: 'task',
-      props:true,
-      component: Task
-    },
+    // {
+    //   path: '/:boardId/lists',
+    //   name: 'list',
+    //   props: true,
+    //   component: List
+    // },
+    // {
+    //   path: '/listId/tasks',
+    //   name: 'task',
+    //   props: true,
+    //   component: Task
+    // },
     {
       path: '/login',
       name: 'login',

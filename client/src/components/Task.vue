@@ -17,12 +17,17 @@
         <a class="dropdown-item" href="#">Something else here</a>
       </div>
     </div>
-    <!-- <Comment v-for="comment in comments" :commentData="comment" /> -->
+    <div>
+      <Comment />
+      <!-- v-for="comment in comments[taskData._id]" :commentData="comment" /> -->
+      <button @click="deleteList(commentData)">Create List</button>
+      <button @click="deleteList(commentData)">Delete Task</button>
+    </div>
   </div>
 </template>
 
 <script>
-   import Comment from '../components/Comment'
+  import Comment from '../components/Comment'
   export default {
     name: 'Task',
     created() {
@@ -41,8 +46,8 @@
     },
     props: ["taskData"],
     computed: {
-      tasks() {
-        return this.$store.state.tasks;
+      comments() {
+        return this.$store.state.comments;
       }
     },
 
@@ -54,17 +59,20 @@
         this.$store.dispatch("deleteTask", taskData)
       },
       addComment(newComment) {
-              this.newComment.boardId = this.listData.boardId
-              this.newComment.listId = this.listData._id
-              this.newComment.authorId = this.listData.authorId
-              this.newComment.taskId = this.listData.taskId
-              console.log(this.listData)
-              this.$store.dispatch('addComment', this.newComment)
-            }
+        this.newComment.boardId = this.listData.boardId
+        this.newComment.listId = this.listData._id
+        this.newComment.authorId = this.listData.authorId
+        this.newComment.taskId = this.listData.taskId
+        console.log(this.listData)
+        this.$store.dispatch('addComment', this.newComment)
+      }
     },
     components: {
       Comment
     }
 
-  }
+  };
 </script>
+
+<style scoped>
+</style>
