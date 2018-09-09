@@ -3,7 +3,7 @@
 
     <h1>
 
-      {{taskData.title}} {{taskData.description}}
+      {{taskData.title}} <br>{{taskData.description}}
     </h1>
     <button @click="deleteTask(taskData)">Delete Task</button>
     <div class="dropdown">

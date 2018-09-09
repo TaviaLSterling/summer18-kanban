@@ -1,5 +1,5 @@
 <template>
-  <div class="board">
+  <div class="board container">
     <div v-if="activeBoard._id">
       <h1>
         {{activeBoard.title}} - {{activeBoard.description}}
@@ -10,8 +10,15 @@
 
       <button type="submit">Create List</button>
     </form>
-    <List v-for="list in lists" :listData="list" />
-  
+    <div class="row">
+      <div class="col-6">
+        <div class="card">
+          <div class="card-content">
+            <List v-for="list in lists" :listData="list" />
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 

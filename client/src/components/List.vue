@@ -1,27 +1,20 @@
 <template>
-  <h1>
-    <div class="row">
-      <div class="col-sm-4">
-        <div class="card blue-grey darken-1">
-          <div class="card-content white-text">
-            <span class="card-title">{{listData.title}}</span>
+  <div>
 
-          </div>
-          <div class="card-action">
-            <form @submit.prevent="addTask(newTask)">
-              <input type="text" placeholder="title" v-model="newTask.title" required>
-              <input type="text" placeholder="description" v-model="newTask.description">
-              <button type="submit">Create Task</button>
-            </form>
-            <button @click="deleteList(listData)">Delete List</button>
-          </div>
-          <Task v-for="task in tasks[listData._id]" :taskData="task" />
+    <span class="card-title">{{listData.title}}</span>
+    <Task v-for="task in tasks[listData._id]" :taskData="task" />
+    <div class="card-action">
+      <form @submit.prevent="addTask(newTask)">
+        <input type="text" placeholder="title" v-model="newTask.title" required>
+        <input type="text" placeholder="description" v-model="newTask.description">
+        <button type="submit">Create Task</button>
+      </form>
+      <button @click="deleteList(listData)">Delete List</button>
 
-        </div>
-      </div>
     </div>
 
-  </h1>
+
+  </div>
 
 </template>
 
