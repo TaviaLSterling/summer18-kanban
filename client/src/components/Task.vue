@@ -18,10 +18,12 @@
       </div>
     </div>
     <div>
-      <Comment v-for="comment in comments[taskData._id]" :commentData="comment" />
-      <!-- <button @click="addComment(commentData)">Create Comment</button>
-      <button @click="deleteComment(commentData)">Delete Comment</button> -->
-      <h1>...</h1>
+      <div class="card bg-info">
+        <Comment v-for="comment in comments[taskData._id]" :commentData="comment" />
+        <!-- <button @click="addComment(commentData)">Create Comment</button>
+          <button @click="deleteComment(commentData)">Delete Comment</button> -->
+      </div>
+
       <div class="card-action">
         <form @submit.prevent="addComment(newComment)">
           <input type="text" placeholder="title" v-model="newComment.title" required>

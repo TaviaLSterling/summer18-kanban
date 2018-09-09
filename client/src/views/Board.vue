@@ -10,11 +10,11 @@
 
       <button type="submit">Create List</button>
     </form>
-    <div class="row">
-      <div class="col-6">
-        <div class="card">
-          <div class="card-content">
-            <List v-for="list in lists" :listData="list" />
+    <div class="">
+      <div class="">
+        <div class="container-fluid">
+          <div class="row">
+            <List class="col-6" v-for="list in lists" :listData="list" />
           </div>
         </div>
       </div>
