@@ -64,6 +64,9 @@
       },
       deleteList(listId) {
         this.$store.dispatch("deleteList", boardId);
+      },
+      logout() {
+        this.$store.dispatch('logout');
       }
     },
     components: {
