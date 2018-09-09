@@ -1,15 +1,15 @@
 <template>
   <div class="boards">
-    WELCOME TO THE BOARDS!!!
+    <h2>Kanban Boards</h2>
     <form @submit.prevent="addBoard">
       <input type="text" placeholder="title" v-model="newBoard.title" required>
       <input type="text" placeholder="description" v-model="newBoard.description">
-      <button type="submit">Create Board</button>
+      <button class="btn-success" type="submit">Create Board</button>
     </form>
     <div v-for="board in boards" :key="board._id">
       <router-link :to="{name: 'board', params: {boardId: board._id}}">{{board.title}}</router-link>
       - {{board.description}}
-      <button @click="deleteBoard(board._id)">DELETE BOARD</button>
+      <button class="btn-danger" @click="deleteBoard(board._id)">Delete Board</button>
     </div>
   </div>
 </template>

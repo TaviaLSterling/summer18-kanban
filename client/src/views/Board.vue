@@ -14,7 +14,7 @@
       <div class="">
         <div class="container-fluid">
           <div class="row">
-            <List class="col-6" v-for="list in lists" :listData="list" />
+            <List class="col-4 m-5" v-for="list in lists" :listData="list" />
           </div>
         </div>
       </div>

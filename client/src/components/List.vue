@@ -2,17 +2,17 @@
   <div class="card text-white bg-warning">
     <div>
 
-      <span class="card-title">{{listData.title}}</span>
+      <span class="card-title"><h2>{{listData.title}}</h2></span>
       <div class="card bg-light text-dark">
-        <Task v-for="task in tasks[listData._id]" :taskData="task" />
+        <Task class="task" v-for="task in tasks[listData._id]" :taskData="task" />
       </div>
       <div class="card-action">
         <form @submit.prevent="addTask(newTask)">
           <input type="text" placeholder="title" v-model="newTask.title" required>
           <input type="text" placeholder="description" v-model="newTask.description">
-          <button type="submit">Create Task</button>
+          <button class="btn-info" type="submit">Create Task</button>
         </form>
-        <button @click="deleteList(listData)">Delete List</button>
+        <button class="btn-danger" @click="deleteList(listData)">Delete List</button>
 
       </div>
 
@@ -80,4 +80,7 @@
 </script>
 
 <style scoped>
+  .task {
+    outline: 1px solid black
+  }
 </style>

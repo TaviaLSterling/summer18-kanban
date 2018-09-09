@@ -1,15 +1,16 @@
 <template>
   <div>
 
-    <h1>
+    <h3>
 
-      {{taskData.title}} <br>{{taskData.description}}
-    </h1>
-    <button @click="deleteTask(taskData)">Delete Task</button>
+      {{taskData.title}}</h3> <br>
+      <h4>{{taskData.description}}</h4>
+    
+    <button class="btn-danger" @click="deleteTask(taskData)">Delete Task</button>
     <div class="dropdown">
       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
         aria-expanded="false">
-        Dropdown button
+        Move to ...
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <a class="dropdown-item" href="#">Action</a>
@@ -28,7 +29,7 @@
         <form @submit.prevent="addComment(newComment)">
           <input type="text" placeholder="title" v-model="newComment.title" required>
           <input type="text" placeholder="description" v-model="newComment.description">
-          <button type="submit">Create Comment</button>
+          <button class="btn-info" type="submit">Create Comment</button>
         </form>
         <button @click="deleteList(listData)">Delete List</button>
       </div>
