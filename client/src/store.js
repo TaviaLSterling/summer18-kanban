@@ -169,25 +169,25 @@ export default new Vuex.Store({
 
     ///COMMENTS
     getComments({ commit, dispatch }, boardId) {
-      api.get('boards/' + boardId + '/lists/tasks')
+      api.get('boards/' + boardId + '/lists/tasks/comments')
         .then(res => {
           commit('setComments', res.data)
         })
     },
     addComment({ commit, dispatch }, newComment) {
       console.log(newComment)
-      api.post("boards/" + newComment.boardId + "/lists/" + newComment.listId + "/tasks", newComment)
+      api.post("boards/" + newComment.boardId + "/lists/" + newComment.listId + "/tasks/" + newComment.taskId + "/comments", newComment)
         .then(serverComment => {
           console.log(serverComment)
-          dispatch('getTasks', serverComment.data.boardId)
+          dispatch('getComments', serverComment.data.boardId)
         })
 
     },
     deleteComment({ commit, dispatch }, commentData) {
 
-      api.delete('boards/' + commentData.boardId + '/lists/' + commentData.listId + '/comments/' + commentData._id)
+      api.delete('boards/' + commentData.boardId + '/lists/' + commentData.listId + '/comments/' + commentData._id, commentData)
         .then(res => {
-          dispatch('getTasks', commentData.boardId)
+          dispatch('getComments', commentData.boardId)
         })
     },
 

@@ -2,8 +2,8 @@
   <div>
 
     <h1>
-      <!-- {{taskData.description}}  -->
-      hi Tavia
+
+      {{commentData.title}} {{commentData.description}}
     </h1>
   </div>
 </template>
