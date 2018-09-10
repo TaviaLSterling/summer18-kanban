@@ -164,7 +164,7 @@ router.post('/:boardId/lists/:listId/tasks/:taskId/comments', (req, res, next) =
     })
 })
 
-router.delete('/:boardId/lists/:listId/tasks/:taskId/comments/:id', (req, res, next) => {
+router.delete('/:boardId/comments/:id', (req, res, next) => {
   Comments.findById(req.params.id)
     .then(task => {
       if (!task.authorId == req.session.uid) {

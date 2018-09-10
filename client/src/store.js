@@ -75,7 +75,7 @@ export default new Vuex.Store({
     },
     logout(state, user) {
       state.user = {}
-      router.push({name: 'login'})
+      router.push({ name: 'login' })
     }
   },
   actions: {
@@ -101,11 +101,11 @@ export default new Vuex.Store({
           router.push({ name: 'boards' })
         })
     },
-    logout({commit, dispatch}) {
+    logout({ commit, dispatch }) {
       auth.delete('logout')
-      .then(res => {
-        commit('logout')
-      })
+        .then(res => {
+          commit('logout')
+        })
     },
 
     //BOARDS
@@ -195,7 +195,7 @@ export default new Vuex.Store({
     },
     deleteComment({ commit, dispatch }, commentData) {
 
-      api.delete('boards/' + commentData.boardId + '/lists/' + commentData.listId + '/comments/' + commentData._id, commentData)
+      api.delete('boards/' + commentData.boardId + '/comments/' + commentData._id, commentData)
         .then(res => {
           dispatch('getComments', commentData.boardId)
         })
