@@ -14,7 +14,7 @@
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <div v-for="list in lists" :listData="lists">
-          <a class="dropdown-item" @click="changeList(taskData)">{{list.title}}</a>
+          <a class="dropdown-item" @click="changeList(list._id)">{{list.title}}</a>
 
         </div>
       </div>
@@ -42,8 +42,8 @@
 
       <div class="card-action">
         <form @submit.prevent="addComment(newComment)">
-          <input type="text" placeholder="title" v-model="newComment.title" required>
-          <input type="text" placeholder="description" v-model="newComment.description">
+
+          <input type="text" placeholder="description" v-model="newComment.description" required>
           <button class="btn-info" type="submit">Create Comment</button>
         </form>
       </div>
@@ -70,8 +70,7 @@
           boardId: "",
           listId: "",
           authorId: "",
-          taskId: "",
-          _id: ""
+          taskId: ""
         }
       };
     },
@@ -100,9 +99,15 @@
         this.newComment.listId = this.taskData.listId
         this.newComment.authorId = this.taskData.authorId
         this.newComment.taskId = this.taskData._id
+        console.log(newComment)
         this.$store.dispatch('addComment', this.newComment)
       },
-      changeList() {
+      changeList(newId) {
+        let update = {
+          oldId: this.taskData.listId,
+          newId,
+          taskData: this.taskData,
+        }
         this.$store.dispatch("changeList", taskData)
       }
 

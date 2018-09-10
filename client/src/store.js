@@ -177,6 +177,12 @@ export default new Vuex.Store({
         })
     },
 
+    changeList({ commit, dispatch }, taskData) {
+      api.put("/" + taskData._id)
+        .then()
+
+    },
+
     ///COMMENTS
     getComments({ commit, dispatch }, boardId) {
       api.get('boards/' + boardId + '/lists/tasks/comments')
