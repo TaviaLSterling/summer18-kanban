@@ -4,9 +4,23 @@
     <h3>
 
       {{taskData.title}}</h3> <br>
-      <h4>{{taskData.description}}</h4>
-    
+    <h4>{{taskData.description}}</h4>
+
     <button class="btn-danger" @click="deleteTask(taskData)">Delete Task</button>
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+        aria-expanded="false">
+        Move to ...
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <div v-for="list in lists" :listData="lists">
+          <a class="dropdown-item" @click="changeList(taskData)">{{list.title}}</a>
+
+        </div>
+      </div>
+
+
+      <!-- <button class="btn-danger" @click="deleteTask(taskData)">Delete Task</button>
     <div class="dropdown">
       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
         aria-expanded="false">
@@ -18,7 +32,7 @@
         <a class="dropdown-item" href="#">Something else here</a>
       </div>
     </div>
-    <div>
+    <div> -->
       <div class="card bg-info">
         <Comment v-for="comment in comments[taskData._id]" :commentData="comment" />
         <!-- <button @click="addComment(commentData)">Create Comment</button>
@@ -35,6 +49,7 @@
       </div>
     </div>
   </div>
+
 </template>
 
 <script>
@@ -63,7 +78,13 @@
     computed: {
       comments() {
         return this.$store.state.comments;
-      }
+      },
+      lists() {
+        return this.$store.state.lists
+      },
+      boards() {
+        return this.$store.state.boards
+      },
     },
 
     methods: {
@@ -80,6 +101,9 @@
         this.newComment.taskId = this.taskData._id
         console.log(this.listData)
         this.$store.dispatch('addComment', this.newComment)
+      },
+      changeList() {
+        this.$store.dispatch("changeList", taskData)
       }
     },
     components: {
