@@ -103,12 +103,8 @@
         this.$store.dispatch('addComment', this.newComment)
       },
       changeList(newId) {
-        let update = {
-          oldId: this.taskData.listId,
-          newId,
-          taskData: this.taskData,
-        }
-        this.$store.dispatch("changeList", taskData)
+        this.taskData.listId = newId
+        this.$store.dispatch("changeList", this.taskData)
       }
 
     },

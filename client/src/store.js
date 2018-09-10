@@ -178,8 +178,12 @@ export default new Vuex.Store({
     },
 
     changeList({ commit, dispatch }, taskData) {
-      api.put("/" + taskData._id)
-        .then()
+      api.put("boards/tasks/" + taskData._id, {
+        listId: taskData.listId
+      })
+        .then(res => {
+          dispatch("getTasks", taskData.boardId)
+        })
 
     },
 

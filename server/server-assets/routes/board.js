@@ -183,7 +183,7 @@ router.delete('/:boardId/comments/:id', (req, res, next) => {
     })
 })
 
-router.put('/:id', (req, res, next) => {
+router.put('/tasks/:id', (req, res, next) => {
   Tasks.findByIdAndUpdate(req.params.id, req.body)
     .then(() => res.send({
       message: "Success"
