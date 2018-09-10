@@ -45,7 +45,7 @@
           <input type="text" placeholder="description" v-model="newComment.description">
           <button class="btn-info" type="submit">Create Comment</button>
         </form>
-        <button @click="deleteList(listData)">Delete List</button>
+        <button @click="deleteComment(newComment)">Delete Comment</button>
       </div>
     </div>
   </div>
