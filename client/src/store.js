@@ -72,6 +72,9 @@ export default new Vuex.Store({
       })
       console.log(comments)
       state.comments = commentObj
+    },
+    logout(state, user) {
+      state.user = {}
     }
   },
   actions: {
