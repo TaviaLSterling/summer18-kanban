@@ -5,6 +5,7 @@
 
       {{commentData.title}} {{commentData.description}}
     </h1>
+    <button @click="deleteComment()">Delete Comment</button>
   </div>
 </template>
 <script>
@@ -38,10 +39,17 @@
     //   this.$store.dispatch("getTasks");
     // },
     methods: {
+      deleteComment(newComment) {
+        // this.newComment.boardId = this.taskData.boardId
+        // this.newComment.listId = this.taskData.listId
+        // this.newComment.authorId = this.taskData.authorId
+        // this.newComment.taskId = this.taskData._id
+        console.log(newComment)
+        this.$store.dispatch("deleteComment", newComment)
+      }
 
     },
     components: {
-
     }
   };
 </script>

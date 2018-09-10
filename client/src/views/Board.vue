@@ -1,6 +1,6 @@
 <template>
   <div class="board container">
-  
+
     <div v-if="activeBoard._id">
       <h1>
         {{activeBoard.title}} - {{activeBoard.description}}
@@ -20,7 +20,7 @@
         </div>
       </div>
     </div>
-      <button class="btn-primary" @click="logout">Log Out</button>
+    <button class="btn-primary" @click="logout">Log Out</button>
   </div>
 </template>
 
@@ -49,6 +49,7 @@
     mounted() {
       this.$store.dispatch("setActiveBoard", this.boardId);
       this.$store.dispatch("getTasks", this.boardId)
+      this.$store.dispatch("getComments", this.boardId)
     },
     computed: {
       activeBoard() {

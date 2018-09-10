@@ -35,6 +35,7 @@
     <div> -->
       <div class="card bg-info">
         <Comment v-for="comment in comments[taskData._id]" :commentData="comment" />
+
         <!-- <button @click="addComment(commentData)">Create Comment</button>
           <button @click="deleteComment(commentData)">Delete Comment</button> -->
       </div>
@@ -45,7 +46,6 @@
           <input type="text" placeholder="description" v-model="newComment.description">
           <button class="btn-info" type="submit">Create Comment</button>
         </form>
-        <button @click="deleteComment(newComment)">Delete Comment</button>
       </div>
     </div>
   </div>
@@ -70,7 +70,8 @@
           boardId: "",
           listId: "",
           authorId: "",
-          taskId: ""
+          taskId: "",
+          _id: ""
         }
       };
     },
@@ -99,12 +100,12 @@
         this.newComment.listId = this.taskData.listId
         this.newComment.authorId = this.taskData.authorId
         this.newComment.taskId = this.taskData._id
-        console.log(this.listData)
         this.$store.dispatch('addComment', this.newComment)
       },
       changeList() {
         this.$store.dispatch("changeList", taskData)
       }
+
     },
     components: {
       Comment
