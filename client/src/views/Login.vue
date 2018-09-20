@@ -1,5 +1,6 @@
 <template>
-  <div class="login">
+  <div class="container-fluid login mt-5">
+    <h2>Task Master</h2>
     <form v-if="loginForm" @submit.prevent="loginUser">
       <input type="email" v-model="creds.email" placeholder="email">
       <input type="password" v-model="creds.password" placeholder="password">
@@ -12,8 +13,8 @@
       <button type="submit">Create Account</button>
     </form>
     <div @click="loginForm = !loginForm">
-      <p v-if="loginForm">No account? Click here to Register</p>
-      <p v-else>Already have an account? Click here to Login</p>
+      <h4 v-if="loginForm">No account? Click here to Register</h4>
+      <h4 v-else>Already have an account? Click here to Login</h4>
     </div>
   </div>
 </template>
@@ -45,3 +46,19 @@ export default {
   }
 };
 </script>
+<style>
+html, .container-fluid{
+  background-image: url(https://i.ytimg.com/vi/BWxMuQre3R8/maxresdefault.jpg);
+  background-size: cover;
+  height: 100vh;
+  background-attachment:fixed;
+  width:auto;
+  color:white;
+}
+form {
+  margin-bottom:20px;
+}
+h2 {
+  margin-bottom:20px;
+}
+</style>
