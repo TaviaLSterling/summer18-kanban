@@ -5,8 +5,12 @@
   "main": "index.js",
   "scripts": {
     "debug": "node index.js",
-    "start": "node index.js",
+    "start": "node ./server/index.js",
     "dev": "node index.js"
+  },
+  "engines": {
+    "node": "^8.0.0",
+    "npm": "^6.0.0"
   },
   "author": "Mark Ohnsman <mark.ohnsman@gmail.com>",
   "dependencies": {

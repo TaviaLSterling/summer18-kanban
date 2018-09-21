@@ -2,7 +2,7 @@
   <div class="board container">
 
     <div v-if="activeBoard._id">
-      <h1>
+      <h1 class="mt-5 mb-5">
         {{activeBoard.title}} - {{activeBoard.description}}
       </h1>
     </div>
@@ -79,3 +79,13 @@
 
 
 </script>
+<style>
+html, .container, #app{
+  background-image: url(https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/J9H9WF0/videoblocks-beautiful-teal-blue-glowing-bokeh-background-with-floating-light-particles_sdmsnistl_thumbnail-full01.png);
+  background-size: cover;
+  height: 100vh;
+  background-attachment:fixed;
+  width:auto;
+  color:white;
+}
+</style>

@@ -46,9 +46,9 @@ export default {
   }
 };
 </script>
-<style>
+<style scoped>
 html, .container-fluid{
-  background-image: url(https://i.ytimg.com/vi/BWxMuQre3R8/maxresdefault.jpg);
+  background-image: url(https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/J9H9WF0/videoblocks-beautiful-teal-blue-glowing-bokeh-background-with-floating-light-particles_sdmsnistl_thumbnail-full01.png);
   background-size: cover;
   height: 100vh;
   background-attachment:fixed;
