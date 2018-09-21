@@ -8,12 +8,12 @@ Vue.use(Vuex)
 var production = !window.location.host.includes('localhost');
 var baseUrl = production ? '//kanban.herokuapp.com/' : '//localhost:3000/';
 let api = Axios.create({
- baseURL: baseUrl + 'api',
+ baseURL: baseUrl + 'api/',
  timeout: 2000,
  withCredentials: true
 })
 let auth = Axios.create({
- baseURL: baseUrl,
+ baseURL: baseUrl + 'auth/',
  timeout: 2000,
  withCredentials: true
 })
