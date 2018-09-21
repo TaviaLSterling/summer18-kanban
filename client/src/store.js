@@ -8,14 +8,14 @@ Vue.use(Vuex)
 var production = !window.location.host.includes('localhost');
 var baseUrl = production ? '//kanban.herokuapp.com/' : '//localhost:3000/';
 let api = Axios.create({
- baseURL: baseUrl + 'api/',
- timeout: 2000,
- withCredentials: true
+  baseURL: baseUrl + 'api/',
+  timeout: 2000,
+  withCredentials: true
 })
 let auth = Axios.create({
- baseURL: baseUrl + 'auth/',
- timeout: 2000,
- withCredentials: true
+  baseURL: baseUrl + 'auth/',
+  timeout: 2000,
+  withCredentials: true
 })
 
 export default new Vuex.Store({
@@ -39,11 +39,6 @@ export default new Vuex.Store({
       state.activeBoard = state.boards.find(b => b._id == boardId)
     },
     setLists(state, lists) {
-      // let listObj = {}
-      // lists.forEach(list => {
-      //   listObj[list._id] = list
-      // });
-      // state.lists = listObj
       state.lists = lists
     },
     setTasks(state, tasks) {
